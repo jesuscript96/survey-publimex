@@ -1,6 +1,24 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronRight, CheckCircle2, Navigation, ArrowRight, Play, Eye, X } from 'lucide-react';
+import {
+  ChevronRight, CheckCircle2, Navigation, ArrowRight, Play, Eye, X,
+  Laptop, Palette, Film, Smartphone,
+  BatteryFull, Sparkles, Layers, Wand2,
+  Smile, HelpCircle, Meh, ThumbsDown
+} from 'lucide-react';
 import React, { useState } from 'react';
+
+const AppleLogo = ({ size = 18, fill = "currentColor", className = "" }: { size?: number, fill?: string, className?: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="-14.558 0 270.558 315.162"
+    width={size}
+    height={size}
+    fill={fill}
+    className={className}
+  >
+    <path d="M213.803 167.03c.442 47.58 41.74 63.413 42.197 63.615-.35 1.116-6.599 22.563-21.757 44.716-13.104 19.153-26.705 38.235-48.13 38.63-21.05.388-27.82-12.483-51.888-12.483-24.061 0-31.582 12.088-51.51 12.871-20.68.783-36.428-20.71-49.64-39.793-27-39.033-47.633-110.3-19.928-158.406 13.763-23.89 38.36-39.017 65.056-39.405 20.307-.387 39.475 13.662 51.889 13.662 12.406 0 35.699-16.895 60.186-14.414 10.25.427 39.026 4.14 57.503 31.186-1.49.923-34.335 20.044-33.978 59.822M174.24 50.199c10.98-13.29 18.369-31.79 16.353-50.199-15.826.636-34.962 10.546-46.314 23.828-10.173 11.763-19.082 30.589-16.678 48.633 17.64 1.365 35.66-8.964 46.64-22.262" />
+  </svg>
+);
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => (
   <motion.div
@@ -62,30 +80,30 @@ const SurveyModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void
       id: 'uso',
       title: '¿Cuál es tu uso principal de los dispositivos Apple?',
       options: [
-        { label: 'Productividad y Trabajo', icon: '💻' },
-        { label: 'Creatividad y Diseño', icon: '🎨' },
-        { label: 'Entretenimiento', icon: '🎬' },
-        { label: 'Comunicación diaria', icon: '📱' }
+        { label: 'Productividad y Trabajo', icon: <Laptop size={26} strokeWidth={1.5} /> },
+        { label: 'Creatividad y Diseño', icon: <Palette size={26} strokeWidth={1.5} /> },
+        { label: 'Entretenimiento', icon: <Film size={26} strokeWidth={1.5} /> },
+        { label: 'Comunicación diaria', icon: <Smartphone size={26} strokeWidth={1.5} /> }
       ]
     },
     {
       id: 'mejora',
       title: '¿Qué aspecto priorizarías en futuras innovaciones?',
       options: [
-        { label: 'Duración de batería', icon: '🔋' },
-        { label: 'Inteligencia Artificial', icon: '🧠' },
-        { label: 'Integración del ecosistema', icon: '🔄' },
-        { label: 'Diseño y ergonomía', icon: '✨' }
+        { label: 'Duración de batería', icon: <BatteryFull size={26} strokeWidth={1.5} /> },
+        { label: 'Inteligencia Artificial', icon: <Sparkles size={26} strokeWidth={1.5} /> },
+        { label: 'Integración del ecosistema', icon: <Layers size={26} strokeWidth={1.5} /> },
+        { label: 'Diseño y ergonomía', icon: <Wand2 size={26} strokeWidth={1.5} /> }
       ]
     },
     {
       id: 'interes',
       title: '¿Te interesaría un dispositivo enfocado en el bienestar y la salud mental?',
       options: [
-        { label: 'Muy interesado', icon: '🤩' },
-        { label: 'Algo interesado', icon: '🤔' },
-        { label: 'Poco interesado', icon: '🥱' },
-        { label: 'Nada interesado', icon: '🙅‍♂️' }
+        { label: 'Muy interesado', icon: <Smile size={26} strokeWidth={1.5} /> },
+        { label: 'Algo interesado', icon: <HelpCircle size={26} strokeWidth={1.5} /> },
+        { label: 'Poco interesado', icon: <Meh size={26} strokeWidth={1.5} /> },
+        { label: 'Nada interesado', icon: <ThumbsDown size={26} strokeWidth={1.5} /> }
       ]
     }
   ];
@@ -147,7 +165,7 @@ const SurveyModal = ({ isOpen, onClose }: { isOpen: boolean, onClose: () => void
                           onClick={() => nextStep({ [questions[step - 1].id]: opt.label })}
                           className="flex flex-col items-center justify-center p-6 bg-[#f5f5f7] hover:bg-white border-[1.5px] border-transparent hover:border-[#0071e3] rounded-3xl transition-all duration-300 text-center shadow-sm hover:shadow-md group"
                         >
-                          <span className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">{opt.icon}</span>
+                          <span className="mb-3 text-[#1d1d1f] group-hover:text-[#0071e3] group-hover:scale-110 transition-all duration-300">{opt.icon}</span>
                           <span className="font-semibold text-[#1d1d1f]">{opt.label}</span>
                         </button>
                       ))}
@@ -223,7 +241,7 @@ export default function App() {
       <nav className="fixed top-0 left-0 right-0 h-[48px] bg-white/80 backdrop-blur-md z-50 flex items-center justify-center border-b border-gray-200">
         <div className="max-w-screen-lg w-full flex items-center justify-between px-4 text-[12px] font-medium tracking-wide text-gray-600">
           <a href="#" className="flex items-center gap-1 hover:text-black transition-colors text-black">
-            <svg height="18" viewBox="0 0 14 18" width="14" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="m6.66986 6.30236c-.02047-2.02325 1.65084-3.00392 1.72591-3.05151-1.02641-1.49392-2.61053-1.69618-3.1362-1.71617-1.33612-.1358-2.61334.78854-3.29415.78854-.67807 0-1.72288-.76949-2.82118-.74898-1.42861.02045-2.74852.83063-3.48625 2.11584-1.48834 2.58557-.38056 6.40245 1.07684 8.51351.71441 1.0345 1.55462 2.1915 2.65171 2.1504 1.0558-.0409 1.45524-.6821 2.6617-.6821 1.20392 0 1.5645.6821 2.66166.6616 1.13745-.0205 1.86595-1.0553 2.56-2.071 0 0 .15715-.1989.28974-.4077-.14623-.057-.27164-.1088-.36942-.1641-1.42571-.7496-1.5005-2.6841-.52084-3.3883z"/><path d="m9.36267 2.38317c.58284-.70783.97444-1.69233.8679-2.67384-.85078.03446-1.87979.56637-2.48427 1.29486-.53765.64295-.9893 1.64506-.86154 2.61114.94723.07342 1.89063-.5225 2.47791-1.23216z"/></svg>
+            <AppleLogo size={18} />
           </a>
           <div className="hidden md:flex gap-6">
             <a href="#" className="hover:text-black transition-colors text-gray-600">Encuesta</a>
@@ -261,7 +279,52 @@ export default function App() {
               </p>
             </FadeIn>
 
-            <FadeIn delay={0.2} className="flex flex-col sm:flex-row items-center gap-4">
+            {/* Reward Badge */}
+            <motion.div
+              animate={{ y: [0, -7, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+              className="mb-10"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.82, y: 14 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                className="relative inline-flex items-center gap-4 bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[20px] px-5 py-3.5 shadow-2xl shadow-black/30 overflow-hidden cursor-default select-none"
+              >
+                {/* Shimmer sweep */}
+                <motion.div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.22) 50%, transparent 70%)',
+                    width: '200%',
+                  }}
+                  animate={{ x: ['-100%', '100%'] }}
+                  transition={{ duration: 1.8, repeat: Infinity, repeatDelay: 5, ease: 'easeInOut' }}
+                />
+
+                {/* Mini Gift Card */}
+                <div
+                  className="relative w-11 h-7 rounded-[7px] flex-shrink-0 shadow-lg overflow-hidden"
+                  style={{ background: 'linear-gradient(135deg, #fbbf24 0%, #f97316 45%, #ec4899 100%)' }}
+                >
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <AppleLogo size={13} fill="white" />
+                  </div>
+                </div>
+
+                {/* Text */}
+                <div className="flex flex-col items-start leading-none gap-1">
+                  <span className="text-[10px] font-semibold text-white/50 uppercase tracking-[0.12em]">Recompensa incluida</span>
+                  <span className="text-[15px] font-semibold text-white tracking-tight">Apple Gift Card de 50€</span>
+                </div>
+
+                <div className="w-px h-6 bg-white/15 mx-0.5 flex-shrink-0" />
+
+                <span className="text-[12px] text-white/45 font-medium tracking-wide pr-1">al completar</span>
+              </motion.div>
+            </motion.div>
+
+            <FadeIn delay={0.25} className="flex flex-col sm:flex-row items-center gap-4">
               <button onClick={() => setIsSurveyOpen(true)} className="bg-white hover:bg-gray-100 text-black px-8 py-3.5 rounded-full font-medium tracking-wide transition-colors flex items-center justify-center min-w-[200px] cursor-pointer">
                 Comenzar encuesta
               </button>
@@ -384,7 +447,7 @@ export default function App() {
       <footer className="border-t border-gray-200 bg-white/50 backdrop-blur-md pt-16 pb-8 px-4 md:px-8 relative z-10">
         <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 border-b border-gray-200 pb-10 mb-6">
            <div className="flex items-center gap-2 text-2xl font-semibold tracking-tight">
-             <svg height="24" viewBox="0 0 14 18" width="24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="m6.66986 6.30236c-.02047-2.02325 1.65084-3.00392 1.72591-3.05151-1.02641-1.49392-2.61053-1.69618-3.1362-1.71617-1.33612-.1358-2.61334.78854-3.29415.78854-.67807 0-1.72288-.76949-2.82118-.74898-1.42861.02045-2.74852.83063-3.48625 2.11584-1.48834 2.58557-.38056 6.40245 1.07684 8.51351.71441 1.0345 1.55462 2.1915 2.65171 2.1504 1.0558-.0409 1.45524-.6821 2.6617-.6821 1.20392 0 1.5645.6821 2.66166.6616 1.13745-.0205 1.86595-1.0553 2.56-2.071 0 0 .15715-.1989.28974-.4077-.14623-.057-.27164-.1088-.36942-.1641-1.42571-.7496-1.5005-2.6841-.52084-3.3883z"/><path d="m9.36267 2.38317c.58284-.70783.97444-1.69233.8679-2.67384-.85078.03446-1.87979.56637-2.48427 1.29486-.53765.64295-.9893 1.64506-.86154 2.61114.94723.07342 1.89063-.5225 2.47791-1.23216z"/></svg>
+             <AppleLogo size={24} />
            </div>
            
            <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-gray-500">
